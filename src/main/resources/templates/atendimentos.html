@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro de Atendimentos</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="icon" th:href="@{/images/logo.jpg}" type="image/jpg">
+    </head>
+    <body>
+        <!-- Fragmento da Navbar -->
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+        <div class="container mt-4">
+            <h2>Cadastro de Atendimentos</h2>
+            <form th:action="@{/atendimentos/salvar}" th:object="${novoAtendimento}" method="post">
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="mb-3">
+                    <label for="servico">Serviço</label>
+                    <select th:field="*{servico}" class="form-select" id="servico" required>
+                        <option value="">Selecione um serviço</option>
+                        <option th:each="s : ${servicos}" th:value="${s.id}" th:text="${s.nome}"></option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cliente">Cliente</label>
+                    <select th:field="*{cliente}" class="form-select" id="cliente" required>
+                        <option value="">Selecione um cliente</option>
+                        <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nome}"></option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="colaborador">Colaborador</label>
+                    <select th:field="*{colaborador}" class="form-select" id="colaborador" required>
+                        <option value="">Selecione um colaborador</option>
+                        <option th:each="co : ${colaboradores}" th:value="${co.id}" th:text="${co.nome}"></option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dataAtendimento">Data do Atendimento</label>
+                    <input type="date" th:field="*{dataAtendimento}" class="form-control" id="dataAtendimento" required/>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Serviço</th>
+                        <th>Cliente</th>
+                        <th>Colaborador</th>
+                        <th>Data</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="atendimento : ${atendimentos}">
+                        <td th:text="${atendimento.id}"></td>
+                        <td th:text="${atendimento.servico.nome}"></td>
+                        <td th:text="${atendimento.cliente.nome}"></td>
+                        <td th:text="${atendimento.colaborador.nome}"></td>
+                        <td th:text="${atendimento.dataAtendimento}"></td>
+                        <td>
+                            <a th:href="@{/atendimentos/editar/{id}(id=${atendimento.id})}" class="btn btn-sm btn-warning">Editar</a>
+                            <a th:href="@{/atendimentos/deletar/{id}(id=${atendimento.id})}" class="btn btn-sm btn-danger">Deletar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script th:src="@{/js/script.js}"></script>
+    </body>
+</html>
+

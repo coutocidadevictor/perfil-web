@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}">
+                    <img th:src="@{/images/marca.jpg}" alt="Logo" width="40" class="me-2">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navbarNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="cadastroMenu" role="button" data-bs-toggle="dropdown">
+                                Cadastros
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/atendimentos}">Atendimentos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/clientes}">Clientes</a></li>
+                                <li><a class="dropdown-item" th:href="@{/colaboradores}">Colaboradores</a></li>
+                                <li><a class="dropdown-item" th:href="@{/servicos}">Serviços</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="relatoriosMenu" role="button" data-bs-toggle="dropdown">
+                                Relatórios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/atendimentos/relatorios}">Atendimentos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </body>
+</html>

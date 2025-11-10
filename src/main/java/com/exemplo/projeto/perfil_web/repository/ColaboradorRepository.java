@@ -7,6 +7,6 @@ package com.exemplo.projeto.perfil_web.repository;
 import com.exemplo.projeto.perfil_web.model.Colaborador;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
+public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer>{
     
 }

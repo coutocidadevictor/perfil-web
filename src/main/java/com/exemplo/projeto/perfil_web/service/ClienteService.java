@@ -24,11 +24,11 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         clienteRepository.deleteById(id);
     }
 
-    public Cliente buscarPorId(Long id) {
+    public Cliente buscarPorId(Integer id) {
         return clienteRepository.findById(id).orElse(null);
     }
 }

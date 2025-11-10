@@ -45,9 +45,9 @@ public class AtendimentoController {
     }
     
     @GetMapping("/relatorios")
-    public String relatorioAtendimentos(@RequestParam(required = false) Long servicoId,
-                                        @RequestParam(required = false) Long clienteId,
-                                        @RequestParam(required = false) Long colaboradorId,
+    public String relatorioAtendimentos(@RequestParam(required = false) Integer servicoId,
+                                        @RequestParam(required = false) Integer clienteId,
+                                        @RequestParam(required = false) Integer colaboradorId,
                                         Model model) {
 
         List<Atendimento> atendimentos;
@@ -83,7 +83,7 @@ public class AtendimentoController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarAtendimento(@PathVariable Long id, Model model) {
+    public String editarAtendimento(@PathVariable Integer id, Model model) {
         Atendimento atendimento = atendimentoService.buscarPorId(id);
         model.addAttribute("novoAtendimento", atendimento);
         model.addAttribute("atendimentos", atendimentoService.listarTodos());
@@ -95,7 +95,7 @@ public class AtendimentoController {
     }
 
     @GetMapping("/deletar/{id}")
-    public String deletarAtendimento(@PathVariable Long id) {
+    public String deletarAtendimento(@PathVariable Integer id) {
         atendimentoService.deletar(id);
         return "redirect:/atendimentos";
     }

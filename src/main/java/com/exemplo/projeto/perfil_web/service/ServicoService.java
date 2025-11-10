@@ -26,11 +26,11 @@ public class ServicoService {
         servicoRepository.save(servico);
     }
 
-    public Servico buscarPorId(Long id) {
+    public Servico buscarPorId(Integer id) {
         return servicoRepository.findById(id).orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         servicoRepository.deleteById(id);
     }
 }

@@ -20,33 +20,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <form th:action="@{/atendimentos/salvar}" th:object="${novoAtendimento}" method="post">
                 <input type="hidden" th:field="*{id}" />
 
-                <div class="mb-3">
-                    <label for="servico">Serviço</label>
-                    <select th:field="*{servico}" class="form-select" id="servico" required>
-                        <option value="">Selecione um serviço</option>
-                        <option th:each="s : ${servicos}" th:value="${s.id}" th:text="${s.nome}"></option>
-                    </select>
-                </div>
+                <div class="row">
+                    <!-- Lado Esquerdo -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="servico">Serviço</label>
+                            <select th:field="*{servico}" class="form-select" id="servico" required>
+                                <option value="">Selecione um serviço</option>
+                                <option th:each="s : ${servicos}" th:value="${s.id}" th:text="${s.nome}"></option>
+                            </select>
+                        </div>
 
-                <div class="mb-3">
-                    <label for="cliente">Cliente</label>
-                    <select th:field="*{cliente}" class="form-select" id="cliente" required>
-                        <option value="">Selecione um cliente</option>
-                        <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nome}"></option>
-                    </select>
-                </div>
+                        <div class="mb-3">
+                            <label for="cliente">Cliente</label>
+                            <select th:field="*{cliente}" class="form-select" id="cliente" required>
+                                <option value="">Selecione um cliente</option>
+                                <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nome}"></option>
+                            </select>
+                        </div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="colaborador">Colaborador</label>
-                    <select th:field="*{colaborador}" class="form-select" id="colaborador" required>
-                        <option value="">Selecione um colaborador</option>
-                        <option th:each="co : ${colaboradores}" th:value="${co.id}" th:text="${co.nome}"></option>
-                    </select>
-                </div>
+                    <!-- Lado Direito -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="colaborador">Colaborador</label>
+                            <select th:field="*{colaborador}" class="form-select" id="colaborador" required>
+                                <option value="">Selecione um colaborador</option>
+                                <option th:each="co : ${colaboradores}" th:value="${co.id}" th:text="${co.nome}"></option>
+                            </select>
+                        </div>
 
-                <div class="mb-3">
-                    <label for="dataAtendimento">Data do Atendimento</label>
-                    <input type="date" th:field="*{dataAtendimento}" class="form-control" id="dataAtendimento" required/>
+                        <div class="mb-3">
+                            <label for="dataAtendimento">Data do Atendimento</label>
+                            <input type="date" th:field="*{dataAtendimento}" class="form-control" id="dataAtendimento" required/>
+                        </div>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Salvar</button>

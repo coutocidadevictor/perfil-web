@@ -32,7 +32,7 @@ public class ServicoController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarServico(@PathVariable Long id, Model model) {
+    public String editarServico(@PathVariable Integer id, Model model) {
         Servico servico = servicoService.buscarPorId(id);
         model.addAttribute("novoServico", servico);
         model.addAttribute("servicos", servicoService.listarTodos());
@@ -40,7 +40,7 @@ public class ServicoController {
     }
 
     @GetMapping("/deletar/{id}")
-    public String deletarServico(@PathVariable Long id) {
+    public String deletarServico(@PathVariable Integer id) {
         servicoService.deletar(id);
         return "redirect:/servicos";
     }

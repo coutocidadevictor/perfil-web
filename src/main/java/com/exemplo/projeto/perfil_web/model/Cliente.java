@@ -12,7 +12,8 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idCliente")
+    private Integer id;
 
     private String nome;
     private String telefone;
@@ -22,19 +23,19 @@ public class Cliente {
     }
 
     // Construtor completo
-    public Cliente(Long id, String nome, String telefone) {
-        this.id = id;
+    public Cliente(Integer id, String nome, String telefone) {
+        this.id = this.id;
         this.nome = nome;
         this.telefone = telefone;
     }
 
     // Getters e Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.id = this.id;
     }
 
     public String getNome() {

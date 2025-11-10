@@ -7,6 +7,6 @@ package com.exemplo.projeto.perfil_web.repository;
 import com.exemplo.projeto.perfil_web.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Long>{
+public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
     
 }

@@ -37,7 +37,7 @@ public class ColaboradorController {
     }
 
     @GetMapping("/editar/{id}")
-    public String editarColaborador(@PathVariable Long id, Model model) {
+    public String editarColaborador(@PathVariable Integer id, Model model) {
         Colaborador colaborador = colaboradorService.buscarPorId(id);
         model.addAttribute("novoColaborador", colaborador);
         model.addAttribute("colaborador", colaboradorService.listarTodos());
@@ -45,7 +45,7 @@ public class ColaboradorController {
     }
 
     @GetMapping("/deletar/{id}")
-    public String deletarColaborador(@PathVariable Long id) {
+    public String deletarColaborador(@PathVariable Integer id) {
         colaboradorService.deletar(id);
         return "redirect:/colaboradores";
     }

@@ -24,11 +24,11 @@ public class AtendimentoService {
         return atendimentoRepository.save(atendimento);
     }
 
-    public Atendimento buscarPorId(Long id) {
+    public Atendimento buscarPorId(Integer id) {
         return atendimentoRepository.findById(id).orElse(null);
     }
     
-    public List<Atendimento> filtrarAtendimentos(Long servicoId, Long clienteId, Long colaboradorId) {
+    public List<Atendimento> filtrarAtendimentos(Integer servicoId, Integer clienteId, Integer colaboradorId) {
         // Caso 1: Todos os filtros estão vazios - retorna tudo
         if (servicoId == null && clienteId == null && colaboradorId == null) {
             return atendimentoRepository.findAll();
@@ -65,7 +65,7 @@ public class AtendimentoService {
         return atendimentoRepository.findAll();
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         atendimentoRepository.deleteById(id);
     }
 }

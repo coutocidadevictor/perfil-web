@@ -24,11 +24,11 @@ public class ColaboradorService {
         return colaboradorRepository.save(colaborador);
     }
 
-    public void deletar(Long id) {
+    public void deletar(Integer id) {
         colaboradorRepository.deleteById(id);
     }
 
-    public Colaborador buscarPorId(Long id) {
+    public Colaborador buscarPorId(Integer id) {
         return colaboradorRepository.findById(id).orElse(null);
     }
 }

@@ -11,7 +11,8 @@ import jakarta.persistence.*;
 public class Servico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idServico")
+    private Integer id;
     
     private String nome;
     private String valor;
@@ -21,18 +22,18 @@ public class Servico {
     }
     
     // Construtor completo
-    public Servico(Long id, String nome, String valor) {
+    public Servico(Integer id, String nome, String valor) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
     }
     
     // Getters e Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -11,7 +11,7 @@ import com.exemplo.projeto.perfil_web.model.Servico;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
+public interface AtendimentoRepository extends JpaRepository<Atendimento, Integer>{
     
     // Busca por atributos existentes
     List<Atendimento> findByCliente(Cliente cliente);
@@ -20,16 +20,16 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long>{
     List<Atendimento> findByDataAtendimento(String data);
     
     // Busca por id de chave estrangeira
-    List<Atendimento> findByServicoId(Long servicoId);
-    List<Atendimento> findByClienteId(Long clienteId);
-    List<Atendimento> findByColaboradorId(Long colaboradorId);
+    List<Atendimento> findByServicoId(Integer servicoId);
+    List<Atendimento> findByClienteId(Integer clienteId);
+    List<Atendimento> findByColaboradorId(Integer colaboradorId);
     
     // Combinações de dois filtros
-    List<Atendimento> findByServicoIdAndClienteId(Long servicoId, Long clienteId);
-    List<Atendimento> findByServicoIdAndColaboradorId(Long servicoId, Long colaboradorId);
-    List<Atendimento> findByClienteIdAndColaboradorId(Long clienteId, Long colaboradorId);
+    List<Atendimento> findByServicoIdAndClienteId(Integer servicoId, Integer clienteId);
+    List<Atendimento> findByServicoIdAndColaboradorId(Integer servicoId, Integer colaboradorId);
+    List<Atendimento> findByClienteIdAndColaboradorId(Integer clienteId, Integer colaboradorId);
     
     // Combinação de três filtros
-    List<Atendimento> findByServicoIdAndClienteIdAndColaboradorId(Long servicoId, Long clienteId, Long colaboradorId);
+    List<Atendimento> findByServicoIdAndClienteIdAndColaboradorId(Integer servicoId, Integer clienteId, Integer colaboradorId);
     
 }

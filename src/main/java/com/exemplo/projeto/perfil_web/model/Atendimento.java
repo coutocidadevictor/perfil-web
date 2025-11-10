@@ -12,10 +12,11 @@ public class Atendimento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idAtendimento")
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "idClientes")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     @ManyToOne
@@ -23,7 +24,7 @@ public class Atendimento {
     private Servico servico;
 
     @ManyToOne
-    @JoinColumn(name = "idColaboradores")
+    @JoinColumn(name = "idColaborador")
     private Colaborador colaborador;
 
     private String dataAtendimento;
@@ -33,7 +34,7 @@ public class Atendimento {
     }
 
     // Construtor completo
-    public Atendimento(Long id, Cliente cliente, Servico servico, Colaborador colaborador, String dataAtendimento) {
+    public Atendimento(Integer id, Cliente cliente, Servico servico, Colaborador colaborador, String dataAtendimento) {
         this.id = id;
         this.cliente = cliente;
         this.servico = servico;
@@ -42,11 +43,11 @@ public class Atendimento {
     }
 
     // Getters e Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

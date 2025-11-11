@@ -24,7 +24,7 @@ public class Cliente {
 
     // Construtor completo
     public Cliente(Integer id, String nome, String telefone) {
-        this.id = this.id;
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
     }
@@ -35,7 +35,7 @@ public class Cliente {
     }
 
     public void setId(Integer id) {
-        this.id = this.id;
+        this.id = id;
     }
 
     public String getNome() {

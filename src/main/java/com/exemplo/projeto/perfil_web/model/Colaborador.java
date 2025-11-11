@@ -34,8 +34,8 @@ public class Colaborador {
         return id;
     }
 
-    public void setId(Integer idColaborador) {
-        this.id = idColaborador;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

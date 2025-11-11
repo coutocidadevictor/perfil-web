@@ -43,12 +43,12 @@ public class AtendimentoController {
         model.addAttribute("colaboradores", colaboradorService.listarTodos());
         return "atendimentos";
     }
-    
+
     @GetMapping("/relatorios")
     public String relatorioAtendimentos(@RequestParam(required = false) Integer servicoId,
-                                        @RequestParam(required = false) Integer clienteId,
-                                        @RequestParam(required = false) Integer colaboradorId,
-                                        Model model) {
+            @RequestParam(required = false) Integer clienteId,
+            @RequestParam(required = false) Integer colaboradorId,
+            Model model) {
 
         List<Atendimento> atendimentos;
 
@@ -68,18 +68,27 @@ public class AtendimentoController {
     }
 
     @PostMapping("/salvar")
-    public String salvarAtendimento(@ModelAttribute("novoAtendimento") Atendimento atendimento) {
-        // Buscar os objetos completos com base nos IDs do formulário
-        Servico servico = servicoService.buscarPorId(atendimento.getServico().getId());
-        Cliente cliente = clienteService.buscarPorId(atendimento.getCliente().getId());
-        Colaborador colaborador = colaboradorService.buscarPorId(atendimento.getColaborador().getId());
+    public String salvarAtendimento(@ModelAttribute("novoAtendimento") Atendimento atendimento, Model model) {
+        try {
+            Servico servico = servicoService.buscarPorId(atendimento.getServico().getId());
+            Cliente cliente = clienteService.buscarPorId(atendimento.getCliente().getId());
+            Colaborador colaborador = colaboradorService.buscarPorId(atendimento.getColaborador().getId());
 
-        atendimento.setServico(servico);
-        atendimento.setCliente(cliente);
-        atendimento.setColaborador(colaborador);
+            atendimento.setServico(servico);
+            atendimento.setCliente(cliente);
+            atendimento.setColaborador(colaborador);
 
-        atendimentoService.salvar(atendimento);
-        return "redirect:/atendimentos";
+            atendimentoService.salvar(atendimento);
+            return "redirect:/atendimentos";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("erroData", e.getMessage());
+            model.addAttribute("atendimentos", atendimentoService.listarTodos());
+            model.addAttribute("novoAtendimento", atendimento);
+            model.addAttribute("servicos", servicoService.listarTodos());
+            model.addAttribute("clientes", clienteService.listarTodos());
+            model.addAttribute("colaboradores", colaboradorService.listarTodos());
+            return "atendimentos";
+        }
     }
 
     @GetMapping("/editar/{id}")
@@ -90,7 +99,7 @@ public class AtendimentoController {
         model.addAttribute("servicos", servicoService.listarTodos());
         model.addAttribute("clientes", clienteService.listarTodos());
         model.addAttribute("colaboradores", colaboradorService.listarTodos());
-        
+
         return "atendimentos";
     }
 
@@ -100,4 +109,3 @@ public class AtendimentoController {
         return "redirect:/atendimentos";
     }
 }
-

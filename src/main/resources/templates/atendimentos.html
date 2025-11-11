@@ -17,8 +17,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <div class="container mt-4">
             <h2>Cadastro de Atendimentos</h2>
+            
+            <div th:if="${erroData}" class="alert alert-danger" th:text="${erroData}"></div>
+            
             <form th:action="@{/atendimentos/salvar}" th:object="${novoAtendimento}" method="post">
                 <input type="hidden" th:field="*{id}" />
+                
+                
 
                 <div class="row">
                     <!-- Lado Esquerdo -->

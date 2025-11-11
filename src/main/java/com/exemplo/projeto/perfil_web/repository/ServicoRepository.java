@@ -5,8 +5,9 @@
 package com.exemplo.projeto.perfil_web.repository;
 
 import com.exemplo.projeto.perfil_web.model.Servico;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServicoRepository extends JpaRepository<Servico, Integer>{
-    
+public interface ServicoRepository extends JpaRepository<Servico, Integer> {
+    Optional<Servico> findByNomeIgnoreCase(String nome);
 }

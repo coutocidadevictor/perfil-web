@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicoService {
@@ -25,22 +26,28 @@ public class ServicoService {
 
     public void salvar(Servico servico) {
         // validação de valor
-        validarValor(servico.getValor());
+        validarServico(servico);
         servicoRepository.save(servico);
     }
 
-    private void validarValor(String valorStr) {
-        if (valorStr == null || valorStr.trim().isEmpty()) {
+    private void validarServico(Servico servico) {
+        if (servico.getValor() == null || servico.getValor().trim().isEmpty()) {
             throw new IllegalArgumentException("O valor do serviço deve ser informado.");
         }
 
         try {
-            BigDecimal valor = new BigDecimal(valorStr.replace(",", "."));
+            BigDecimal valor = new BigDecimal(servico.getValor().replace(",", "."));
             if (valor.compareTo(BigDecimal.ZERO) <= 0) {
                 throw new IllegalArgumentException("O valor do serviço deve ser positivo.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("O valor informado não é numérico válido.");
+        }
+
+        // Validação de nome duplicado
+        Optional<Servico> existente = servicoRepository.findByNomeIgnoreCase(servico.getNome());
+        if (existente.isPresent() && !existente.get().getId().equals(servico.getId())) {
+            throw new IllegalArgumentException("Já existe um serviço com este nome.");
         }
     }
 

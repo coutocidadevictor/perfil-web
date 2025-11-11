@@ -26,9 +26,16 @@ public class ServicoController {
     }
 
     @PostMapping("/salvar")
-    public String salvarServico(@ModelAttribute("novoServico") Servico servico) {
-        servicoService.salvar(servico);
-        return "redirect:/servicos";
+    public String salvarServico(@ModelAttribute("novoServico") Servico servico, Model model) {
+        try {
+            servicoService.salvar(servico);
+            return "redirect:/servicos";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("erroValor", e.getMessage());
+            model.addAttribute("servicos", servicoService.listarTodos());
+            model.addAttribute("novoServico", servico);
+            return "servicos";
+        }
     }
 
     @GetMapping("/editar/{id}")
